@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel Administrativo — InkFlow</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar sidebar--admin">
+      <a href="../../pages/home/index.html" class="dashboard-sidebar__logo">InkFlow <small>Admin</small></a>
+      <nav class="dashboard-nav" id="sidebar-nav">
+        <a href="#resumo" class="dashboard-nav__item dashboard-nav__item--active" data-section="resumo">📊 Resumo Geral</a>
+        <a href="#usuarios" class="dashboard-nav__item" data-section="usuarios">👥 Usuários</a>
+        <a href="#artistas" class="dashboard-nav__item" data-section="artistas">🎨 Artistas</a>
+        <a href="#aprovacoes" class="dashboard-nav__item" data-section="aprovacoes">✅ Aprovações</a>
+        <a href="#comunidade" class="dashboard-nav__item" data-section="comunidade">💬 Comunidade</a>
+      </nav>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 id="dashboard-title">Resumo Geral</h2>
+        <div class="user-badge" id="user-greeting" style="font-weight: bold;">Olá, Admin</div>
+      </header>
+
+      <div class="dashboard-content" id="dashboard-sections">
+        
+        <!-- RESUMO -->
+        <section id="sec-resumo" class="dashboard-section active">
+          <div class="grid grid--3-cols">
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Total de Usuários</h4>
+               <p style="font-size: 2rem; font-weight: bold;" id="stat-users">0</p>
+             </div>
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Artistas Ativos</h4>
+               <p style="font-size: 2rem; font-weight: bold;" id="stat-artists">0</p>
+             </div>
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Tópicos no Fórum</h4>
+               <p style="font-size: 2rem; font-weight: bold;" id="stat-posts">0</p>
+             </div>
+          </div>
+        </section>
+
+        <!-- USUÁRIOS -->
+        <section id="sec-usuarios" class="dashboard-section" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+             <h3>Gerenciar Usuários</h3>
+             <input type="search" id="search-users" class="input input--search" placeholder="Buscar e-mail..." style="width: 300px;">
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr><th>ID</th><th>Nome</th><th>E-mail</th><th>Papel</th><th>Cadastro</th><th>Ações</th></tr>
+              </thead>
+              <tbody id="users-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ARTISTAS -->
+        <section id="sec-artistas" class="dashboard-section" style="display: none;">
+          <h3>Todos os Artistas</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr><th>Nome</th><th>Cidade/UF</th><th>Estilos</th><th>Verificado</th><th>Ações</th></tr>
+              </thead>
+              <tbody id="artists-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- APROVAÇÕES -->
+        <section id="sec-aprovacoes" class="dashboard-section" style="display: none;">
+          <h3>Tatuadores Pendentes de Verificação</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail (ID Usuário)</th>
+                  <th>Data Registro</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="approvals-table-body">
+                <!-- Preenchido via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- COMUNIDADE -->
+        <section id="sec-comunidade" class="dashboard-section" style="display: none;">
+          <h3>Gerenciar Tópicos</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr><th>Categoria</th><th>Título</th><th>Autor</th><th>Curtidas</th><th>Ações</th></tr>
+              </thead>
+              <tbody id="posts-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../../assets/js/dashboard-admin.js"></script>
+</body>
+</html>

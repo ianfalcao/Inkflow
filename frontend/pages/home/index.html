@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorar Artes e Tatuagens — InkFlow</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header" id="main-header">
+    <div class="container header__container">
+      <a href="index.html" class="header__logo">Ink<span class="logo__highlight">Flow</span></a>
+      <button class="header__menu-btn" id="mobile-menu-btn" aria-label="Abrir menu">☰</button>
+      <nav class="nav" id="main-nav" aria-label="Navegação Principal">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link nav__link--active">Explorar</a></li>
+          <li><a href="../styles-page/index.html" class="nav__link">Estilos</a></li>
+          <li><a href="../artists/index.html" class="nav__link">Artistas</a></li>
+          <li><a href="../community/index.html" class="nav__link">Como funciona</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="../../auth/login/index.html" class="btn btn--outline">Entrar</a>
+        <a href="../../auth/register/index.html" class="btn btn--primary">Criar conta</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-header bg-light">
+      <div class="container">
+        <h1>Explorar Galeria de Tatuagens</h1>
+        <p>Descubra inspirações, trabalhos autorais e novos conceitos por tatuadores de todo o Brasil.</p>
+        
+        <!-- BARRA DE BUSCA E FILTROS AVANÇADOS -->
+        <form class="filter-bar" id="explorar-filter-form" data-api-endpoint="/api/v1/works/search">
+          <div class="filter-bar__group">
+            <input type="search" name="q" class="input input--search" placeholder="Buscar por tema (ex: dragão, flor, caveira)..." data-search-input>
+          </div>
+          <div class="filter-bar__group">
+            <select name="style" class="select" aria-label="Filtrar por estilo">
+              <option value="">Todos os Estilos</option>
+              <option value="fineline">Fine Line</option>
+              <option value="blackwork">Blackwork</option>
+              <option value="realismo">Realismo</option>
+              <option value="oldschool">Old School</option>
+              <option value="anime">Anime</option>
+            </select>
+          </div>
+          <div class="filter-bar__group">
+            <select name="body_part" class="select" aria-label="Filtrar por parte do corpo">
+              <option value="">Local do Corpo</option>
+              <option value="braco">Braço / Antebraço</option>
+              <option value="costas">Costas</option>
+              <option value="perna">Perna / Coxa</option>
+              <option value="peito">Peito</option>
+              <option value="mao">Mão / Dedos</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn--primary">Filtrar</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ARTISTAS EM DESTAQUE (Added via JS) -->
+    <section class="section bg-light" data-animate>
+      <div class="container">
+        <div class="section__header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          <h2>Artistas em Destaque</h2>
+          <a href="../artists/index.html" class="btn btn--outline btn--sm">Ver todos</a>
+        </div>
+        <div class="featured-carousel" id="featured-artists-container" style="display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 1rem;">
+          <!-- Cards to be injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA MASONRY -->
+    <section class="section">
+      <div class="container">
+        <!-- ORDENAÇÃO E CONTAGEM -->
+        <div class="gallery-toolbar">
+          <span class="results-count" data-results-counter>Exibindo <strong id="total-works">120</strong> trabalhos</span>
+          <div class="sort-wrapper">
+            <label for="sort-select">Ordenar por:</label>
+            <select id="sort-select" name="sort" class="select select--sm" data-action="sort-gallery">
+              <option value="recent">Mais recentes</option>
+              <option value="popular">Mais populares</option>
+              <option value="trending">Em alta na semana</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GRID DE RESULTADOS -->
+        <div class="gallery-grid" id="works-container" data-api-container="works-list">
+          <!-- CARD EXEMPLO 1 -->
+          <article class="tattoo-card" data-tattoo-id="tat-201" data-style="blackwork">
+            <button type="button" class="tattoo-card__modal-trigger" data-modal-open="tattoo-modal">
+              <img src="images/works/work-1.jpg" alt="Tatuagem de crânio e rosas" class="tattoo-card__img" loading="lazy">
+              <div class="tattoo-card__overlay">
+                <span class="tattoo-card__zoom-icon">🔍</span>
+              </div>
+            </button>
+            <div class="tattoo-card__info">
+              <a href="../artists/index.html?id=art-001" class="tattoo-card__artist">Lucas Andrade</a>
+              <span class="tag tag--xs">Blackwork</span>
+            </div>
+          </article>
+          <!-- Mais cards populados dinamicamente via backend -->
+        </div>
+
+        <!-- ESTADOS DE TELA (LOADING E EMPTY) -->
+        <div class="state-container" id="works-loading" data-state="loading" hidden>
+          <p>Carregando inspirações...</p>
+        </div>
+        <div class="state-container" id="works-empty" data-state="empty" hidden>
+          <h3>Nenhuma tatuagem encontrada</h3>
+          <p>Tente remover os filtros para ver mais resultados.</p>
+        </div>
+
+        <div class="pagination-container text-center margin-top-lg">
+          <button type="button" class="btn btn--outline" id="load-more-btn" data-action="load-more">Carregar mais artes</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <p>&copy; 2026 InkFlow. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../../assets/js/homepage.js"></script>
+</body>
+</html>

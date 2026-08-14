@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel do Cliente — InkFlow</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- ASIDE SIDEBAR -->
+    <aside class="dashboard-sidebar">
+      <a href="../../pages/home/index.html" class="dashboard-sidebar__logo">InkFlow</a>
+      <nav class="dashboard-nav" id="sidebar-nav">
+        <a href="#resumo" class="dashboard-nav__item dashboard-nav__item--active" data-section="resumo">📊 Resumo</a>
+        <a href="#agendamentos" class="dashboard-nav__item" data-section="agendamentos">📅 Agendamentos</a>
+        <a href="#orcamentos" class="dashboard-nav__item" data-section="orcamentos">💬 Orçamentos</a>
+        <a href="#mensagens" class="dashboard-nav__item" data-section="mensagens">✉️ Mensagens</a>
+        <a href="#favoritos" class="dashboard-nav__item" data-section="favoritos">❤️ Favoritos</a>
+        <a href="#configuracoes" class="dashboard-nav__item" data-section="configuracoes">⚙️ Configurações</a>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="dashboard-main">
+      <header class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 id="dashboard-title">Área do Cliente</h2>
+        <div class="user-badge" id="user-greeting" style="font-weight: bold;">Olá, Visitante</div>
+      </header>
+
+      <div class="dashboard-content" id="dashboard-sections">
+        
+        <!-- RESUMO -->
+        <section id="sec-resumo" class="dashboard-section active">
+          <div class="grid grid--3-cols">
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Próxima Sessão</h4>
+               <p style="font-size: 1.25rem; font-weight: bold;" id="stat-next-app">Nenhuma</p>
+             </div>
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Orçamentos Ativos</h4>
+               <p style="font-size: 1.5rem; font-weight: bold; color: var(--color-warning);" id="stat-active-quotes">0</p>
+             </div>
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Artistas Salvos</h4>
+               <p style="font-size: 1.5rem; font-weight: bold; color: var(--color-success);" id="stat-saved-artists">0</p>
+             </div>
+          </div>
+        </section>
+
+        <!-- AGENDAMENTOS -->
+        <section id="sec-agendamentos" class="dashboard-section" style="display: none;">
+          <h3>Meus Agendamentos</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr><th>Artista</th><th>Tatuagem</th><th>Data/Hora</th><th>Status</th><th>Ações</th></tr>
+              </thead>
+              <tbody id="appointments-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ORÇAMENTOS -->
+        <section id="sec-orcamentos" class="dashboard-section" style="display: none;">
+          <h3>Meus Pedidos de Orçamento</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr><th>Artista</th><th>Projeto</th><th>Data Pedido</th><th>Status</th><th>Ações</th></tr>
+              </thead>
+              <tbody id="quotes-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- MENSAGENS -->
+        <section id="sec-mensagens" class="dashboard-section" style="display: none;">
+          <p>Nenhuma mensagem recebida.</p>
+        </section>
+
+        <!-- FAVORITOS -->
+        <section id="sec-favoritos" class="dashboard-section" style="display: none;">
+          <h3 style="margin-bottom: 1rem;">Tatuagens Salvas</h3>
+          <div class="grid grid--3-cols" id="fav-tattoos-grid" style="margin-bottom: 2rem;"></div>
+          
+          <h3 style="margin-bottom: 1rem;">Artistas que Sigo</h3>
+          <div class="grid grid--3-cols" id="fav-artists-grid"></div>
+        </section>
+
+        <!-- CONFIGURAÇÕES -->
+        <section id="sec-configuracoes" class="dashboard-section" style="display: none;">
+          <form id="client-settings-form" style="max-width: 600px;">
+             <div class="form-group">
+                <label class="label">Nome Completo</label>
+                <input type="text" name="name" id="set-name" class="input" required>
+             </div>
+             <div class="form-group">
+                <label class="label">Foto de Perfil (URL)</label>
+                <input type="url" name="avatar" id="set-avatar" class="input">
+             </div>
+             <button type="submit" class="btn btn--primary">Atualizar Perfil</button>
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../../assets/js/dashboard-cliente.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar Tatuadores — InkFlow</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <a href="../home/index.html" class="header__logo">Ink<span class="logo__highlight">Flow</span></a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="../home/index.html" class="nav__link">Explorar</a></li>
+          <li><a href="../styles-page/index.html" class="nav__link">Estilos</a></li>
+          <li><a href="index.html" class="nav__link nav__link--active">Artistas</a></li>
+          <li><a href="../community/index.html" class="nav__link">Como funciona</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="../../auth/login/index.html" class="btn btn--outline">Entrar</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-artistas container margin-top-md">
+    <div class="layout-sidebar">
+      <!-- SIDEBAR DE FILTROS -->
+      <aside class="sidebar-filters">
+        <h2>Filtros</h2>
+        <form id="artist-filter-form" data-api-endpoint="/api/v1/artists/filter">
+          <div class="form-group">
+            <label for="artist-search" class="label">Nome do tatuador</label>
+            <input type="text" id="artist-search" name="q" class="input" placeholder="Ex: Lucas Andrade">
+          </div>
+          <div class="form-group">
+            <label for="state-select" class="label">Estado</label>
+            <select id="state-select" name="state" class="select">
+              <option value="">Todos</option>
+              <option value="SP">São Paulo</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="PR">Paraná</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="city-input" class="label">Cidade</label>
+            <input type="text" id="city-input" name="city" class="input" placeholder="Ex: Campinas">
+          </div>
+          <div class="form-group">
+            <span class="label">Estilos Atendidos</span>
+            <div class="checkbox-group">
+              <label class="checkbox"><input type="checkbox" name="style[]" value="blackwork"> Blackwork</label>
+              <label class="checkbox"><input type="checkbox" name="style[]" value="fineline"> Fine Line</label>
+              <label class="checkbox"><input type="checkbox" name="style[]" value="realismo"> Realismo</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="checkbox">
+              <input type="checkbox" name="verified_only" value="true"> Apenas Verificados
+            </label>
+          </div>
+          <div class="form-group">
+             <label for="rating-select" class="label">Avaliação Mínima</label>
+             <select id="rating-select" name="rating" class="select">
+                <option value="">Todas</option>
+                <option value="4.5">4.5+ Estrelas</option>
+                <option value="4.0">4.0+ Estrelas</option>
+             </select>
+          </div>
+          <div class="form-group">
+             <label for="price-select" class="label">Preço</label>
+             <select id="price-select" name="price" class="select">
+                <option value="">Todos</option>
+                <option value="$">$ (Econômico)</option>
+                <option value="$$">$$ (Médio)</option>
+                <option value="$$$">$$$ (Premium)</option>
+             </select>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Aplicar Filtros</button>
+        </form>
+      </aside>
+
+      <!-- LISTAGEM DE ARTISTAS -->
+      <section class="content-results">
+        <div class="section__header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h1>Tatuadores Encontrados (<span id="artists-count">0</span>)</h1>
+          <div class="sort-wrapper">
+             <select id="artist-sort" name="sort" class="select select--sm">
+                <option value="rating">Melhor Avaliados</option>
+                <option value="recent">Mais Recentes</option>
+                <option value="name">Ordem Alfabética</option>
+             </select>
+          </div>
+        </div>
+        
+        <div class="state-container" id="artists-loading" style="text-align: center; padding: 2rem;" hidden>
+          <p>Buscando artistas...</p>
+        </div>
+        
+        <div class="state-container" id="artists-empty" style="text-align: center; padding: 2rem;" hidden>
+          <h3>Nenhum artista encontrado</h3>
+          <p>Tente ajustar os filtros de busca.</p>
+        </div>
+
+        <div class="grid grid--3-cols" id="artists-grid" data-api-container="artists-list">
+          <article class="artist-card" data-artist-id="art-001">
+            <div class="artist-card__avatar-wrap">
+              <img src="images/artists/artist-1.jpg" alt="Lucas Andrade" class="artist-card__avatar">
+              <span class="badge badge--verified">✓</span>
+            </div>
+            <div class="artist-card__body">
+              <h3 class="artist-card__name">Lucas Andrade</h3>
+              <p class="artist-card__location">📍 São Paulo, SP</p>
+              <div class="artist-card__tags">
+                <span class="tag tag--sm">Blackwork</span>
+              </div>
+              <a href="index.html?id=art-001" class="btn btn--outline btn--block">Ver Perfil</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container"><p>&copy; 2026 InkFlow.</p></div>
+  </footer>
+  
+  <script type="module" src="../../assets/js/artistas.js"></script>
+</body>
+</html>

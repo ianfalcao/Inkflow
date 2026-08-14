@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Estilos de Tatuagem — InkFlow</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <a href="../home/index.html" class="header__logo">Ink<span class="logo__highlight">Flow</span></a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="../home/index.html" class="nav__link">Explorar</a></li>
+          <li><a href="index.html" class="nav__link nav__link--active">Estilos</a></li>
+          <li><a href="../artists/index.html" class="nav__link">Artistas</a></li>
+          <li><a href="../community/index.html" class="nav__link">Como funciona</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <h1>Estilos de Tatuagem</h1>
+    <p class="section__subtitle">Conheça as principais técnicas, origens e encontre especialistas em cada estilo.</p>
+
+    <!-- SEARCH BAR -->
+    <div class="form-group margin-top-lg" id="styles-search-container">
+       <input type="search" id="style-search" class="input input--search" placeholder="Buscar estilo por nome...">
+    </div>
+
+    <!-- LISTA DE ESTILOS -->
+    <div class="grid grid--3-cols margin-top-lg" id="styles-grid">
+      <!-- Dinamicamente populado -->
+    </div>
+
+    <div class="state-container" id="styles-empty" hidden>
+      <h3>Nenhum estilo encontrado</h3>
+    </div>
+
+    <!-- DETALHE DO ESTILO (Escondido por padrão) -->
+    <div id="style-detail-container" hidden>
+       <button id="btn-back-styles" class="btn btn--outline margin-bottom-md">← Voltar para todos os estilos</button>
+       <div id="style-detail-content"></div>
+       
+       <h3 class="margin-top-lg margin-bottom-md">Artistas em Destaque neste estilo</h3>
+       <div class="grid grid--3-cols" id="style-artists-grid"></div>
+
+       <h3 class="margin-top-lg margin-bottom-md">Galeria de Inspirações</h3>
+       <div class="grid grid--3-cols" id="style-tattoos-grid"></div>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container footer__container"><p>&copy; 2026 InkFlow.</p></div></footer>
+  <script type="module" src="../../assets/js/estilos.js"></script>
+</body>
+</html>

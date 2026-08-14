@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Entrar — InkFlow</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body class="body-auth">
+  <main class="auth-card">
+    <a href="../../pages/home/index.html" class="auth-card__logo">Ink<span class="logo__highlight">Flow</span></a>
+    <h2>Acesse sua conta</h2>
+    
+    <div id="login-error" class="form-group" style="color: var(--color-danger); text-align: center; font-size: var(--font-size-sm); display: none;"></div>
+
+    <form id="login-form" data-api-endpoint="/api/v1/auth/login">
+      <div class="form-group">
+        <label for="login-email" class="label">E-mail</label>
+        <input type="email" id="login-email" name="email" class="input" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <div class="label-row">
+          <label for="login-password" class="label">Senha</label>
+          <a href="#" class="text-sm">Esqueceu a senha?</a>
+        </div>
+        <div style="position: relative;">
+          <input type="password" id="login-password" name="password" class="input" required style="padding-right: 40px;">
+          <button type="button" id="toggle-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--color-text-muted);">👁️</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn--primary btn--block">Entrar</button>
+    </form>
+
+    <div class="auth-card__footer">
+      <p>Ainda não tem conta? <a href="../register/index.html">Cadastre-se</a></p>
+    </div>
+  </main>
+  
+  <script type="module" src="../../assets/js/autenticacao.js"></script>
+</body>
+</html>

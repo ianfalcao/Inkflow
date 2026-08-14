@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comunidade InkFlow — Fórum e Discussões</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <a href="../home/index.html" class="header__logo">Ink<span class="logo__highlight">Flow</span></a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="../home/index.html" class="nav__link">Explorar</a></li>
+          <li><a href="../styles-page/index.html" class="nav__link">Estilos</a></li>
+          <li><a href="../artists/index.html" class="nav__link">Artistas</a></li>
+          <li><a href="index.html" class="nav__link nav__link--active">Como funciona</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container margin-top-md">
+    <div class="layout-sidebar">
+      <aside class="sidebar">
+        <button class="btn btn--primary btn--block" id="btn-create-topic">+ Criar Tópico</button>
+        <ul class="category-menu margin-top-md" id="category-filter">
+          <li><a href="#" class="active" data-category="">🔥 Todos os Tópicos</a></li>
+          <li><a href="#" data-category="Cicatrização">💬 Dúvidas sobre Cicatrização</a></li>
+          <li><a href="#" data-category="Ideias e Projetos">💡 Ideias e Projetos</a></li>
+          <li><a href="#" data-category="Dicas para Artistas">🎨 Dicas para Artistas</a></li>
+        </ul>
+      </aside>
+
+      <section class="feed-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          <h1>Discussões da Comunidade</h1>
+          <select id="sort-posts" class="select select--sm">
+             <option value="recent">Mais recentes</option>
+             <option value="popular">Mais curtidos</option>
+          </select>
+        </div>
+
+        <div class="state-container" id="posts-loading" hidden>
+           <p>Carregando posts...</p>
+        </div>
+
+        <div class="state-container" id="posts-empty" hidden>
+           <h3>Nenhuma discussão encontrada</h3>
+        </div>
+
+        <div class="topic-list" id="posts-container" data-api-container="topics-list">
+          <!-- Dinâmico -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- MODAL: CRIAR TÓPICO (template) -->
+  <template id="create-topic-template">
+     <div style="padding: 1rem;">
+       <h2 style="margin-bottom: 1.5rem;">Criar Nova Discussão</h2>
+       <form id="create-topic-form">
+         <div class="form-group">
+            <label class="label">Categoria</label>
+            <select name="category" class="select" required>
+               <option value="Cicatrização">Dúvidas sobre Cicatrização</option>
+               <option value="Ideias e Projetos">Ideias e Projetos</option>
+               <option value="Dicas para Artistas">Dicas para Artistas</option>
+               <option value="Geral">Assunto Geral</option>
+            </select>
+         </div>
+         <div class="form-group">
+            <label class="label">Título</label>
+            <input type="text" name="title" class="input" required minlength="10" placeholder="Ex: Qual a melhor pomada...">
+         </div>
+         <div class="form-group">
+            <label class="label">Conteúdo</label>
+            <textarea name="content" class="input" rows="5" required minlength="20" placeholder="Descreva sua dúvida ou ideia..."></textarea>
+         </div>
+         <button type="submit" class="btn btn--primary btn--block">Publicar</button>
+       </form>
+     </div>
+  </template>
+
+  <footer class="footer"><div class="container footer__container"><p>&copy; 2026 InkFlow.</p></div></footer>
+  <script type="module" src="../../assets/js/comunidade.js"></script>
+</body>
+</html>

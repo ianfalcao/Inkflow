@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Conta — InkFlow</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body class="body-auth">
+  <main class="auth-card auth-card--wide">
+    <a href="../../pages/home/index.html" class="auth-card__logo">Ink<span class="logo__highlight">Flow</span></a>
+    <h2>Criar sua conta no InkFlow</h2>
+
+    <form id="register-form" data-api-endpoint="/api/v1/auth/register">
+      <!-- SELEÇÃO DE TIPO DE CONTA -->
+      <div class="role-selector">
+        <label class="role-option">
+          <input type="radio" name="account_type" value="client" checked>
+          <span>Quero buscar tatuadores (Cliente)</span>
+        </label>
+        <label class="role-option">
+          <input type="radio" name="account_type" value="artist">
+          <span>Sou tatuador (Portfólio)</span>
+        </label>
+      </div>
+      
+      <div id="register-error" class="form-group margin-top-md" style="color: var(--color-danger); text-align: center; font-size: var(--font-size-sm); display: none;"></div>
+
+      <div class="form-grid margin-top-md">
+        <div class="form-group">
+          <label for="reg-name" class="label">Nome Completo</label>
+          <input type="text" id="reg-name" name="name" class="input" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-email" class="label">E-mail</label>
+          <input type="email" id="reg-email" name="email" class="input" required>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="reg-password" class="label">Senha</label>
+          <input type="password" id="reg-password" name="password" class="input" minlength="8" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-password-confirm" class="label">Confirmar Senha</label>
+          <input type="password" id="reg-password-confirm" name="password_confirm" class="input" minlength="8" required>
+        </div>
+      </div>
+
+      <!-- CAMPOS DE ARTISTA (Escondidos por padrão) -->
+      <div id="artist-fields" style="display: none; padding-top: 1rem; margin-top: 1rem; border-top: 1px solid var(--color-border);">
+        <h3 style="margin-bottom: 1rem; font-size: var(--font-size-md);">Dados do Estúdio</h3>
+        <div class="form-grid">
+          <div class="form-group">
+             <label class="label">Cidade</label>
+             <input type="text" name="city" id="reg-city" class="input">
+          </div>
+          <div class="form-group">
+             <label class="label">Estado (UF)</label>
+             <input type="text" name="state" id="reg-state" class="input" maxlength="2">
+          </div>
+        </div>
+        
+        <div class="form-group">
+           <label class="label">Estilos Principais (Selecione até 3)</label>
+           <div class="chip-group" id="styles-chips">
+              <label class="chip"><input type="checkbox" name="styles[]" value="blackwork"> Blackwork</label>
+              <label class="chip"><input type="checkbox" name="styles[]" value="fineline"> Fine Line</label>
+              <label class="chip"><input type="checkbox" name="styles[]" value="realismo"> Realismo</label>
+              <label class="chip"><input type="checkbox" name="styles[]" value="oldschool"> Old School</label>
+              <label class="chip"><input type="checkbox" name="styles[]" value="anime"> Anime</label>
+           </div>
+        </div>
+        
+        <div class="form-group">
+           <label class="label">Foto de Perfil</label>
+           <input type="file" id="reg-avatar" accept="image/*" class="input">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--block margin-top-lg">Concluir Cadastro</button>
+    </form>
+    
+    <div class="auth-card__footer margin-top-md text-center">
+      <p>Já tem uma conta? <a href="../login/index.html">Entrar</a></p>
+    </div>
+  </main>
+  
+  <script type="module" src="../../assets/js/cadastro.js"></script>
+</body>
+</html>

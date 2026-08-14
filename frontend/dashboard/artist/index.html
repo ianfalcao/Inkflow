@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel do Tatuador — InkFlow Pro</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+      <a href="../../pages/home/index.html" class="dashboard-sidebar__logo">InkFlow <small>Pro</small></a>
+      <nav class="dashboard-nav" id="sidebar-nav">
+        <a href="#resumo" class="dashboard-nav__item dashboard-nav__item--active" data-section="resumo">📊 Resumo</a>
+        <a href="#portfolio" class="dashboard-nav__item" data-section="portfolio">🖼️ Portfólio</a>
+        <a href="#agenda" class="dashboard-nav__item" data-section="agenda">📅 Agenda</a>
+        <a href="#solicitacoes" class="dashboard-nav__item" data-section="solicitacoes">📥 Solicitações</a>
+        <a href="#mensagens" class="dashboard-nav__item" data-section="mensagens">💬 Mensagens</a>
+        <a href="#clientes" class="dashboard-nav__item" data-section="clientes">👥 Clientes</a>
+        <a href="#avaliacoes" class="dashboard-nav__item" data-section="avaliacoes">⭐ Avaliações</a>
+        <a href="#configuracoes" class="dashboard-nav__item" data-section="configuracoes">⚙️ Configurações</a>
+      </nav>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 id="dashboard-title">Resumo</h2>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <span id="user-greeting">Olá, Artista</span>
+          <button class="btn btn--primary" id="btn-upload-work">+ Publicar Arte</button>
+        </div>
+      </header>
+
+      <div class="dashboard-content" id="dashboard-sections">
+        
+        <!-- RESUMO -->
+        <section id="sec-resumo" class="dashboard-section active">
+          <div class="grid grid--4-cols" style="margin-bottom: 2rem;">
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Visualizações (mês)</h4>
+               <p style="font-size: 2rem; font-weight: bold;" id="stat-views">0</p>
+             </div>
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Trabalhos</h4>
+               <p style="font-size: 2rem; font-weight: bold;" id="stat-works">0</p>
+             </div>
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Avaliação Média</h4>
+               <p style="font-size: 2rem; font-weight: bold; color: var(--color-warning);" id="stat-rating">0.0</p>
+             </div>
+             <div class="stat-card" style="background: var(--color-bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md);">
+               <h4 style="color: var(--color-text-muted);">Novos Orçamentos</h4>
+               <p style="font-size: 2rem; font-weight: bold; color: var(--color-success);" id="stat-quotes">0</p>
+             </div>
+          </div>
+        </section>
+
+        <!-- PORTFÓLIO -->
+        <section id="sec-portfolio" class="dashboard-section" style="display: none;">
+          <div class="grid grid--3-cols" id="portfolio-grid">
+            <!-- Tattoos from API -->
+          </div>
+        </section>
+
+        <!-- AGENDA -->
+        <section id="sec-agenda" class="dashboard-section" style="display: none;">
+          <h3>Próximas Sessões</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr><th>Cliente</th><th>Tatuagem</th><th>Data/Hora</th><th>Status</th><th>Ações</th></tr>
+              </thead>
+              <tbody id="agenda-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SOLICITAÇÕES -->
+        <section id="sec-solicitacoes" class="dashboard-section" style="display: none;">
+          <h3>Solicitações de Orçamento</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr><th>Cliente</th><th>Ideia</th><th>Data Pedido</th><th>Status</th><th>Ações</th></tr>
+              </thead>
+              <tbody id="quotes-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- MENSAGENS -->
+        <section id="sec-mensagens" class="dashboard-section" style="display: none;">
+          <p>Caixa de entrada vazia.</p>
+        </section>
+
+        <!-- CLIENTES -->
+        <section id="sec-clientes" class="dashboard-section" style="display: none;">
+          <p>Nenhum cliente registrado ainda.</p>
+        </section>
+
+        <!-- AVALIAÇÕES -->
+        <section id="sec-avaliacoes" class="dashboard-section" style="display: none;">
+          <p>Nenhuma avaliação recebida ainda.</p>
+        </section>
+
+        <!-- CONFIGURAÇÕES -->
+        <section id="sec-configuracoes" class="dashboard-section" style="display: none;">
+          <form id="artist-settings-form" style="max-width: 600px;">
+             <div class="form-group">
+                <label class="label">Biografia</label>
+                <textarea name="bio" id="set-bio" class="input" rows="4"></textarea>
+             </div>
+             <div class="form-group">
+                <label class="label">Instagram URL</label>
+                <input type="text" name="instagram" id="set-instagram" class="input">
+             </div>
+             <button type="submit" class="btn btn--primary">Salvar Alterações</button>
+          </form>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- MODAL: UPLOAD ARTE -->
+    <template id="upload-modal-template">
+       <div style="padding: 1rem;">
+         <h2 style="margin-bottom: 1.5rem;">Adicionar ao Portfólio</h2>
+         <form id="upload-work-form">
+           <div class="form-group">
+              <label class="label">Título da Obra</label>
+              <input type="text" name="title" class="input" required>
+           </div>
+           <div class="form-grid">
+             <div class="form-group">
+                <label class="label">Estilo</label>
+                <select name="style" class="select" required>
+                   <option value="blackwork">Blackwork</option>
+                   <option value="fineline">Fine Line</option>
+                   <option value="realismo">Realismo</option>
+                </select>
+             </div>
+             <div class="form-group">
+                <label class="label">Parte do Corpo</label>
+                <select name="bodyPart" class="select" required>
+                   <option value="braco">Braço</option>
+                   <option value="perna">Perna</option>
+                   <option value="costas">Costas</option>
+                </select>
+             </div>
+           </div>
+           <div class="form-group">
+              <label class="label">URL da Imagem</label>
+              <input type="url" name="imageUrl" class="input" required placeholder="https://...">
+           </div>
+           <button type="submit" class="btn btn--primary btn--block margin-top-md">Publicar</button>
+         </form>
+       </div>
+    </template>
+  </div>
+  
+  <script type="module" src="../../assets/js/dashboard-artista.js"></script>
+</body>
+</html>
