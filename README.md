@@ -30,15 +30,10 @@ O InkFlow busca funcionar como uma rede de portfólios para tatuadores, reunindo
 
 * Java
 * Spring Boot
-* Spring Data JPA
-* Hibernate
-* Spring Security
-* JWT
-* Maven
 
 ### Banco de dados
 
-* PostgreSQL
+* MySQL
 
 ### Outros
 
