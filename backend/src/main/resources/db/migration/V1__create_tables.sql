@@ -60,4 +60,4 @@ CREATE TABLE appointments (
 -- ========================================================
 -- Carga Inicial de Dados (Opcional para teste inicial)
 -- ========================================================
-INSERT INTO roles (name) VALUES ('ROLE_ADMIN'), ('ROLE_ARTIST'), ('ROLE_USER');
+INSERT INTO roles (name) VALUES ('ROLE_ADMIN'), ('ROLE_ARTIST'), ('ROLE_USER')
