@@ -1,7 +1,7 @@
 // ==========================================================================
 // INKFLOW — API Abstraction Layer
 // Reads/writes from localStorage now. Replace internals with fetch() for
-// Spring Boot + PostgreSQL integration later.
+// Python/FastAPI backend integration later (MySQL persistence is planned).
 // ==========================================================================
 
 import StorageService from './storage.js';
