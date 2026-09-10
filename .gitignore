@@ -1,0 +1,3 @@
+# Ambientes virtuais Python (o projeto utiliza backend/.venv/)
+.venv/
+venv/
