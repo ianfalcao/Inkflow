@@ -3,7 +3,8 @@
 // Handles login form validation, password visibility, and session creation.
 // ==========================================================================
 
-import AuthService from './utils/auth.js';
+import { initMocks } from './mocks/init.js';
+import AuthService from './services/auth.js';
 import { $, showToast } from './utils/dom.js';
 
 // DOM Elements
@@ -17,6 +18,7 @@ const errorContainer = $('#login-error');
  * Initializes the login page.
  */
 function init() {
+  initMocks();
   // If already logged in, redirect away from login page
   if (AuthService.isLoggedIn()) {
     redirectBasedOnRole(AuthService.getCurrentUser().role);

@@ -43,7 +43,7 @@ export const mockPosts = [
   }
 ];
 
-import API from '../utils/api.js';
+import API from '../services/api.js';
 export function seedPosts() {
   API.seed('posts', mockPosts);
 }

@@ -63,7 +63,7 @@ export const mockArtists = [
   }
 ];
 
-import API from '../utils/api.js';
+import API from '../services/api.js';
 export function seedArtists() {
   API.seed('artists', mockArtists);
 }

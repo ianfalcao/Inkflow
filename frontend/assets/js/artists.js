@@ -3,8 +3,9 @@
 // Handles the artist search, filters, sorting and rendering.
 // ==========================================================================
 
-import API from './utils/api.js';
-import AuthService from './utils/auth.js';
+import { initMocks } from './mocks/init.js';
+import API from './services/api.js';
+import AuthService from './services/auth.js';
 import StorageService from './utils/storage.js';
 import {
   $,
@@ -31,6 +32,7 @@ let currentArtists = [];
  * Initializes the artists page.
  */
 async function init() {
+  initMocks();
   AuthService.updateHeaderUI();
   setupEventListeners();
   await loadArtists();

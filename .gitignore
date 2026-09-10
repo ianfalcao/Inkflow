@@ -9,6 +9,7 @@ __pycache__/
 # Variáveis de ambiente
 .env
 .env.*
+!.env.example
 
 # IDEs
 .vscode/
@@ -21,3 +22,7 @@ Thumbs.db
 # Testes/cache
 .pytest_cache/
 .mypy_cache/
+
+# Agents
+.agents/
+.codex/

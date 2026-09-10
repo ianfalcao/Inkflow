@@ -3,8 +3,9 @@
 // Handles the private client dashboard logic.
 // ==========================================================================
 
-import API from './utils/api.js';
-import AuthService from './utils/auth.js';
+import { initMocks } from './mocks/init.js';
+import API from './services/api.js';
+import AuthService from './services/auth.js';
 import StorageService from './utils/storage.js';
 import {
   $,
@@ -39,8 +40,9 @@ let currentUser = null;
  * Initializes the dashboard.
  */
 async function init() {
+  initMocks();
   // 1. Guard route
-  AuthService.requireAuth('client');
+  if (!AuthService.requireAuth('client')) return;
   currentUser = AuthService.getCurrentUser();
   
   if (!currentUser) return; 

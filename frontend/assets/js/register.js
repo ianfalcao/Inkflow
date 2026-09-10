@@ -3,8 +3,9 @@
 // Handles user registration, role toggling, and form validation.
 // ==========================================================================
 
-import API from './utils/api.js';
-import AuthService from './utils/auth.js';
+import { initMocks } from './mocks/init.js';
+import API from './services/api.js';
+import AuthService from './services/auth.js';
 import { $, $$, showToast, generateId } from './utils/dom.js';
 
 // DOM Elements
@@ -20,6 +21,7 @@ const styleCheckboxes = $$('input[name="styles[]"]');
  * Initializes the registration page.
  */
 function init() {
+  initMocks();
   if (AuthService.isLoggedIn()) {
     redirectBasedOnRole(AuthService.getCurrentUser().role);
     return;
@@ -101,7 +103,7 @@ async function handleRegistration() {
     submitBtn.disabled = true;
     
     // Check if email already exists (mock validation)
-    const existingUsers = await API.get('users', { email });
+    const existingUsers = await API.get('users', { email }, { exact: true });
     if (existingUsers.length > 0) {
       throw new Error('Este e-mail já está em uso.');
     }

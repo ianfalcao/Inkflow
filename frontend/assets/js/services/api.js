@@ -4,7 +4,7 @@
 // Python/FastAPI backend integration later (MySQL persistence is planned).
 // ==========================================================================
 
-import StorageService from './storage.js';
+import StorageService from '../utils/storage.js';
 
 // Key prefix for all InkFlow data collections
 const PREFIX = 'inkflow_';
@@ -25,9 +25,10 @@ const API = {
    *
    * @param {string} resource — e.g. 'artists', 'tattoos', 'users'
    * @param {object} [params={}] — filter key/value pairs
+   * @param {object} [options={}] — exact: compare whole strings, ignoring case
    * @returns {Promise<Array>}
    */
-  async get(resource, params = {}) {
+  async get(resource, params = {}, { exact = false } = {}) {
     await simulateLatency();
     let items = StorageService.get(PREFIX + resource, []);
 
@@ -37,7 +38,7 @@ const API = {
 
       items = items.filter(item => {
         const field = item[key];
-        if (field === undefined) return true;
+        if (field === undefined) return false;
 
         // Array field — check if includes value
         if (Array.isArray(field)) {
@@ -46,8 +47,11 @@ const API = {
             : field.includes(value);
         }
 
-        // String field — case-insensitive partial match
+        // Exact comparisons are used for identity fields such as email.
         if (typeof field === 'string' && typeof value === 'string') {
+          if (exact) {
+            return field.trim().toLowerCase() === value.trim().toLowerCase();
+          }
           return field.toLowerCase().includes(value.toLowerCase());
         }
 
@@ -115,7 +119,7 @@ const API = {
   },
 
   /**
-   * Seeds a resource collection with initial data if it's empty.
+   * Seeds a resource collection only if it has not been initialized.
    * Only runs once — no-op if data already exists.
    *
    * @param {string} resource
@@ -124,7 +128,7 @@ const API = {
   seed(resource, data) {
     const key = PREFIX + resource;
     const existing = StorageService.get(key, null);
-    if (!existing || existing.length === 0) {
+    if (existing === null) {
       StorageService.set(key, data);
     }
   },

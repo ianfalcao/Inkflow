@@ -51,7 +51,7 @@ export const mockTattoos = [
   }
 ];
 
-import API from '../utils/api.js';
+import API from '../services/api.js';
 export function seedTattoos() {
   API.seed('tattoos', mockTattoos);
 }

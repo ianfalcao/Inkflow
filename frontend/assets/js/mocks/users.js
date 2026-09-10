@@ -109,7 +109,7 @@ export const mockUsers = [
 ];
 
 // Helper to seed this data
-import API from '../utils/api.js';
+import API from '../services/api.js';
 export function seedUsers() {
   API.seed('users', mockUsers);
 }

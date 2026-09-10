@@ -3,8 +3,9 @@
 // Handles the administration area logic.
 // ==========================================================================
 
-import API from './utils/api.js';
-import AuthService from './utils/auth.js';
+import { initMocks } from './mocks/init.js';
+import API from './services/api.js';
+import AuthService from './services/auth.js';
 import {
   $,
   $$,
@@ -41,8 +42,9 @@ let allPosts = [];
  * Initializes the dashboard.
  */
 async function init() {
+  initMocks();
   // Guard route
-  AuthService.requireAuth('admin');
+  if (!AuthService.requireAuth('admin')) return;
   currentUser = AuthService.getCurrentUser();
   
   if (!currentUser) return;

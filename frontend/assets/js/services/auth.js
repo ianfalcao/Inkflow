@@ -3,7 +3,7 @@
 // Manages user sessions, role-based access control, and UI updates based on login state.
 // ==========================================================================
 
-import StorageService from './storage.js';
+import StorageService from '../utils/storage.js';
 import API from './api.js';
 
 const SESSION_KEY = 'inkflow_session';
@@ -19,7 +19,11 @@ const AuthService = {
    * @throws {Error} If credentials are invalid.
    */
   async login(email, password) {
-    const users = await API.get('users', { email });
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!normalizedEmail) {
+      throw new Error('E-mail ou senha incorretos.');
+    }
+    const users = await API.get('users', { email: normalizedEmail }, { exact: true });
     const user = users[0];
 
     if (!user || user.password !== password) {
@@ -63,6 +67,7 @@ const AuthService = {
    * Protects a route, requiring a specific role (or just being logged in).
    * Redirects to login if the requirement is not met.
    * @param {string} [requiredRole] - 'client', 'artist', 'admin'. If omitted, just requires any login.
+   * @returns {boolean} Whether the caller may continue initializing the page.
    */
   requireAuth(requiredRole) {
     const user = this.getCurrentUser();
@@ -70,7 +75,7 @@ const AuthService = {
     if (!user) {
       // Not logged in, redirect to login
       window.location.href = '../../auth/login/index.html';
-      return;
+      return false;
     }
 
     if (requiredRole && user.role !== requiredRole) {
@@ -82,7 +87,9 @@ const AuthService = {
       } else {
          window.location.href = '../../dashboard/client/index.html';
       }
+      return false;
     }
+    return true;
   },
 
   /**

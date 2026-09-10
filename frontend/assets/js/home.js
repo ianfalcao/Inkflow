@@ -3,8 +3,8 @@
 // Handles the main exploration gallery, filters, and featured artists.
 // ==========================================================================
 
-import API from './utils/api.js';
-import AuthService from './utils/auth.js';
+import API from './services/api.js';
+import AuthService from './services/auth.js';
 import StorageService from './utils/storage.js';
 import {
   $,
@@ -18,13 +18,7 @@ import {
   initScrollAnimations
 } from './utils/dom.js';
 
-// Seed initial data if missing (Prototype only)
-import { seedTattoos } from './data/tatuagens.js';
-import { seedArtists } from './data/artistas.js';
-import { seedUsers } from './data/usuarios.js';
-seedUsers();
-seedArtists();
-seedTattoos();
+import { initMocks } from './mocks/init.js';
 
 // DOM Elements
 const header = $('#main-header');
@@ -44,6 +38,7 @@ let currentTattoos = [];
  * Initializes the homepage.
  */
 async function init() {
+  initMocks();
   AuthService.updateHeaderUI();
   initScrollAnimations();
   setupEventListeners();

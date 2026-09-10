@@ -3,8 +3,9 @@
 // Handles the private artist dashboard logic.
 // ==========================================================================
 
-import API from './utils/api.js';
-import AuthService from './utils/auth.js';
+import { initMocks } from './mocks/init.js';
+import API from './services/api.js';
+import AuthService from './services/auth.js';
 import {
   $,
   $$,
@@ -45,8 +46,9 @@ let artistTattoos = [];
  * Initializes the dashboard.
  */
 async function init() {
+  initMocks();
   // 1. Guard route
-  AuthService.requireAuth('artist');
+  if (!AuthService.requireAuth('artist')) return;
   currentUser = AuthService.getCurrentUser();
   
   if (!currentUser) return; // Should be handled by guard, but just in case

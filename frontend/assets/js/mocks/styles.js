@@ -33,7 +33,7 @@ export const mockStyles = [
   }
 ];
 
-import API from '../utils/api.js';
+import API from '../services/api.js';
 export function seedStyles() {
   API.seed('styles', mockStyles);
 }

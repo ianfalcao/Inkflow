@@ -15,7 +15,7 @@
       <nav class="nav" id="main-nav" aria-label="Navegação Principal">
         <ul class="nav__list">
           <li><a href="index.html" class="nav__link nav__link--active">Explorar</a></li>
-          <li><a href="../styles-page/index.html" class="nav__link">Estilos</a></li>
+          <li><a href="../styles/index.html" class="nav__link">Estilos</a></li>
           <li><a href="../artists/index.html" class="nav__link">Artistas</a></li>
           <li><a href="../community/index.html" class="nav__link">Como funciona</a></li>
         </ul>
@@ -94,20 +94,7 @@
 
         <!-- GRID DE RESULTADOS -->
         <div class="gallery-grid" id="works-container" data-api-container="works-list">
-          <!-- CARD EXEMPLO 1 -->
-          <article class="tattoo-card" data-tattoo-id="tat-201" data-style="blackwork">
-            <button type="button" class="tattoo-card__modal-trigger" data-modal-open="tattoo-modal">
-              <img src="images/works/work-1.jpg" alt="Tatuagem de crânio e rosas" class="tattoo-card__img" loading="lazy">
-              <div class="tattoo-card__overlay">
-                <span class="tattoo-card__zoom-icon">🔍</span>
-              </div>
-            </button>
-            <div class="tattoo-card__info">
-              <a href="../artists/index.html?id=art-001" class="tattoo-card__artist">Lucas Andrade</a>
-              <span class="tag tag--xs">Blackwork</span>
-            </div>
-          </article>
-          <!-- Mais cards populados dinamicamente via backend -->
+          <!-- Cards renderizados pelo script da página. -->
         </div>
 
         <!-- ESTADOS DE TELA (LOADING E EMPTY) -->
@@ -133,6 +120,6 @@
     </div>
   </footer>
 
-  <script type="module" src="../../assets/js/homepage.js"></script>
+  <script type="module" src="../../assets/js/home.js"></script>
 </body>
 </html>

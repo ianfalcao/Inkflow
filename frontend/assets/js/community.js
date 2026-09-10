@@ -3,8 +3,9 @@
 // Handles the forum feed, category filtering, and post creation.
 // ==========================================================================
 
-import API from './utils/api.js';
-import AuthService from './utils/auth.js';
+import { initMocks } from './mocks/init.js';
+import API from './services/api.js';
+import AuthService from './services/auth.js';
 import {
   $,
   $$,
@@ -35,6 +36,7 @@ let currentSort = 'recent';
  * Initializes the community page.
  */
 async function init() {
+  initMocks();
   AuthService.updateHeaderUI();
   setupEventListeners();
   await loadPosts();

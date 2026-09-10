@@ -3,8 +3,9 @@
 // Handles the styles directory and individual style details.
 // ==========================================================================
 
-import API from './utils/api.js';
-import AuthService from './utils/auth.js';
+import { initMocks } from './mocks/init.js';
+import API from './services/api.js';
+import AuthService from './services/auth.js';
 import {
   $,
   $$,
@@ -36,6 +37,7 @@ let currentStyles = [];
  * Initializes the styles page.
  */
 async function init() {
+  initMocks();
   AuthService.updateHeaderUI();
   setupEventListeners();
   await loadStyles();
