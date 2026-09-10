@@ -1,3 +1,23 @@
-# Ambientes virtuais Python (o projeto utiliza backend/.venv/)
+# Ambiente virtual
 .venv/
 venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Variáveis de ambiente
+.env
+.env.*
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Testes/cache
+.pytest_cache/
+.mypy_cache/
