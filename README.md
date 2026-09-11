@@ -30,14 +30,10 @@ O InkFlow busca funcionar como uma rede de portfólios para tatuadores, reunindo
 * Python
 * FastAPI
 * Uvicorn
-* SQLAlchemy e PyMySQL para persistência
-* Pydantic Settings para configuração
-* pwdlib com Argon2 para hash de senhas
 
 ### Banco de dados
 
-* MySQL (conexão preparada; requer configuração de uma instância local)
-* SQLite em memória nos testes
+* MySQL 
 
 ### Outros
 
