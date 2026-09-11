@@ -33,7 +33,7 @@ O InkFlow busca funcionar como uma rede de portfólios para tatuadores, reunindo
 
 ### Banco de dados
 
-* MySQL (planejado; integração ainda não implementada)
+* MySQL 
 
 ### Outros
 
